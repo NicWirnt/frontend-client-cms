@@ -1,29 +1,32 @@
 import React from "react";
 import logo from "../../img/logo.png";
 import { NavBarComp } from "../navBar/NavBar";
-import { Button, Col, Form, InputGroup, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 
 export const Header = () => {
   return (
-    <div className="py-2 bg-dark">
+    <div className="py-2 bg-light fs-5">
+      <Row>
+        <Col className="text-center">
+          <div className="">
+            <img src={logo} style={{ width: "5rem", height: "5rem" }} />
+          </div>
+        </Col>
+      </Row>
       <Row className="">
-        <Col className="m-2">
+        <Col xs={5} className="m-2 sm-6">
           <InputGroup className="">
-            <Form.Control placeholder="What are you looking?" />
+            <Form.Control placeholder="Search Item" />
             <Button variant="primary" id="button-addon2">
               Search
             </Button>
           </InputGroup>
         </Col>
-        <Col className="text-center">
-          <div className="">
-            <img src={logo} style={{ width: "4rem", height: "4rem" }} />
-          </div>
-        </Col>
-        <Col className="text-end m-2">
+
+        <Col className="text-end m-2 sm-6">
           <Button
             style={{ width: "3rem", height: "3rem" }}
-            variant="outline-primary"
+            variant="outline-danger"
             className="rounded-circle"
           >
             <i class="fas fa-shopping-cart"></i>

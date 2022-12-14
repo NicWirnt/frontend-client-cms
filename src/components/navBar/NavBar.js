@@ -5,6 +5,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { fetchCatAction } from "../../pages/categories/categoryAction";
 
 export const NavBarComp = () => {
@@ -20,42 +21,56 @@ export const NavBarComp = () => {
   const childrenCat = categories.filter((item, i) => item.parentCatId);
   console.log(categories);
   return (
-    <div className="" sticky="top">
-      <Navbar
-        collapseOnSelect
-        expand="md"
-        bg="dark"
-        variant="dark"
-        className="shadow-sm"
-      >
-        <Container>
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link to="/">Home Page</Nav.Link>
-              <Nav.Link to="/products">Products</Nav.Link>
-              <NavDropdown title="Categories" id="collasible-nav-dropdown">
-                {parentCat.map((item, i) => (
-                  <>
-                    <NavDropdown.Item>{item.catName}</NavDropdown.Item>
-                    {childrenCat.map((cat, index) => (
-                      <>
-                        {cat.parentCatId === item._id && (
-                          <NavDropdown.Item> ➡️ {cat.catName}</NavDropdown.Item>
-                        )}
-                      </>
-                    ))}
-                  </>
-                ))}
-              </NavDropdown>
-            </Nav>
-            <Nav>
-              <Nav.Link to="/login">Login</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+    <Navbar
+      collapseOnSelect
+      expand="md"
+      bg=""
+      variant=""
+      className="shadow-sm"
+      sticky="top"
+    >
+      <Container>
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="me-auto ">
+            <Nav.Link className="text-black">
+              <Link to="/">Home Page</Link>
+            </Nav.Link>
+            <Nav.Link className="text-black">
+              <Link to="/products">Products</Link>
+            </Nav.Link>
+            <NavDropdown title="Categories" id="collasible-nav-dropdown">
+              {parentCat.map((item, i) => (
+                <>
+                  <NavDropdown.Item>{item.catName}</NavDropdown.Item>
+                  {childrenCat.map((cat, index) => (
+                    <>
+                      {cat.parentCatId === item._id && (
+                        <NavDropdown.Item> ➡️ {cat.catName}</NavDropdown.Item>
+                      )}
+                    </>
+                  ))}
+                </>
+              ))}
+            </NavDropdown>
+          </Nav>
+          <Nav>
+            <Nav.Link>
+              <Link to="/login" className="text-black">
+                Login
+              </Link>
+            </Nav.Link>
+          </Nav>
+          <Nav>
+            <Nav.Link>
+              <Link to="/register" className="text-black">
+                Register
+              </Link>
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
       <br />
-    </div>
+    </Navbar>
   );
 };
