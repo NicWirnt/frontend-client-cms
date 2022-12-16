@@ -40,7 +40,7 @@ export const LoginForm = () => {
       style={{
         width: "400px",
         margin: "auto",
-        background: "#D5D8DC",
+
         padding: "1rem",
         borderRadius: "10px",
         boxShadow: "5px 5px 20px #17202A ",

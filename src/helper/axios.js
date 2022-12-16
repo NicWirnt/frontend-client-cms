@@ -1,8 +1,9 @@
 import axios from "axios";
 
-const rootUrlApi = "http://localhost:8000/api/v1";
+const rootUrlApi = "http://localhost:5000/api/v1";
 const categoriesEP = rootUrlApi + "/categories";
 const userEP = rootUrlApi + "/user";
+const productsEP = rootUrlApi + "/products";
 
 const apiProcessor = async ({ method, url, dataObj }) => {
   try {
@@ -46,5 +47,23 @@ export const getUser = async (dataObj) => {
     method: "post",
     url,
     dataObj,
+  });
+};
+
+// products api
+
+export const getProducts = async () => {
+  const url = productsEP;
+  return apiProcessor({
+    method: "get",
+    url,
+  });
+};
+
+export const getSingleProduct = async (_id) => {
+  const url = productsEP + "/" + _id;
+  return apiProcessor({
+    method: "get",
+    url,
   });
 };

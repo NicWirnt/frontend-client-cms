@@ -6,6 +6,7 @@ import { Login } from "./pages/login/Login";
 import "./app.css";
 import { Register } from "./pages/register/Register";
 import { Products } from "./pages/products/Products";
+import { ProductLanding } from "./pages/products/ProductLanding";
 const App = () => {
   return (
     <div className="">
@@ -16,6 +17,8 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/product/:_id" element={<ProductLanding />} />
+          <Route path="*" element={<h1>404 page not found</h1>}></Route>
         </Routes>
       </BrowserRouter>
     </div>

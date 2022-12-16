@@ -14,7 +14,6 @@ export const Login = () => {
           // minHeight: "100%",
           // position: "",
           // minWidth: "100%",
-          background: "white",
         }}
       >
         <BootstrapToastify />
