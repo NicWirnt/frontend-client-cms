@@ -12,7 +12,7 @@ const apiProcessor = async ({ method, url, dataObj }) => {
       url,
       data: dataObj,
     });
-    console.log(data);
+
     return data;
   } catch (error) {
     return {

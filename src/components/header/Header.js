@@ -2,8 +2,11 @@ import React from "react";
 import logo from "../../img/logo.png";
 import { NavBarComp } from "../navBar/NavBar";
 import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
+import { useSelector } from "react-redux";
 
 export const Header = () => {
+  const { cart } = useSelector((state) => state.cart);
+
   return (
     <div className="py-2 bg-light fs-5">
       <Row>
@@ -42,7 +45,7 @@ export const Header = () => {
                 transform: "translate(50%, -25%)",
               }}
             >
-              2
+              {cart.length}
             </div>
           </Button>
         </Col>

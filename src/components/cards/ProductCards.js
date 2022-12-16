@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Card, CardGroup, Col, Row } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { setToCart } from "../../pages/cart/CartSlice";
 import { setSelectedProduct } from "../../pages/products/ProductSlice";
 
 export const ProductCards = ({ products }) => {
@@ -11,6 +12,10 @@ export const ProductCards = ({ products }) => {
 
   const handleOnProductDesc = (product) => {
     dispatch(setSelectedProduct(product));
+  };
+
+  const handleOnClick = (item) => {
+    dispatch(setToCart(item));
   };
   return (
     <Row xs={1} md={4} className="g-4 mt-4 mb-4">
@@ -42,7 +47,11 @@ export const ProductCards = ({ products }) => {
                   : `$${item.price}`}{" "}
                 <br />
                 <div>
-                  <Button className="" variant="outline-primary">
+                  <Button
+                    className=""
+                    variant="outline-primary"
+                    onClick={() => handleOnClick(item)}
+                  >
                     Add to cart
                   </Button>
                 </div>

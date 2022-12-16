@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { ProductInformation } from "../../components/products/ProductInformation";
 import { DefaultLayout } from "../layout/DefaultLayout";
 import { fetchSingleProductAction } from "./ProductAction";
 
@@ -15,7 +16,7 @@ export const ProductLanding = () => {
 
   return (
     <DefaultLayout>
-      <h2>Product Information</h2>
+      <ProductInformation />
     </DefaultLayout>
   );
 };
