@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, Form, InputGroup } from "react-bootstrap";
+import { Button, Dropdown, Form, InputGroup } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -39,19 +39,46 @@ export const NavBarComp = () => {
             <Nav.Link className="text-black">
               <Link to="/products">Products</Link>
             </Nav.Link>
-            <NavDropdown title="Categories" id="collasible-nav-dropdown">
-              {parentCat.map((item, i) => (
-                <>
-                  <NavDropdown.Item>{item.catName}</NavDropdown.Item>
-                  {childrenCat.map((cat, index) => (
-                    <>
-                      {cat.parentCatId === item._id && (
-                        <NavDropdown.Item> ➡️ {cat.catName}</NavDropdown.Item>
-                      )}
-                    </>
-                  ))}
-                </>
-              ))}
+            <NavDropdown
+              title="Categories"
+              id="collasible-nav-dropdown"
+              align={{ lg: "end" }}
+              style={{}}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  maxHeight: "300px",
+                  minWidth: "400px",
+                  overflowY: "scroll",
+                }}
+              >
+                {parentCat.map((item, i) => (
+                  <>
+                    <NavDropdown.Item>
+                      <Link to={`/category/${item._id}`}>{item.catName}</Link>
+                      {childrenCat.map((cat, index) => (
+                        <>
+                          {cat.parentCatId === item._id && (
+                            <NavDropdown.Item>
+                              <Link
+                                to={`/category/${cat._id}`}
+                                style={{
+                                  textDecoration: "none",
+                                }}
+                              >
+                                {cat.catName}
+                              </Link>
+                            </NavDropdown.Item>
+                          )}
+                        </>
+                      ))}
+                      <Dropdown.Divider />
+                    </NavDropdown.Item>
+                  </>
+                ))}
+              </div>
             </NavDropdown>
           </Nav>
           <Nav>

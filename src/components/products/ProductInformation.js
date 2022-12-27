@@ -9,7 +9,8 @@ export const ProductInformation = () => {
   const { images } = selectedProduct;
   const dispatch = useDispatch();
 
-  const handleOnClick = () => {
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
     dispatch(setToCart(selectedProduct));
   };
 
@@ -21,7 +22,7 @@ export const ProductInformation = () => {
           <tr>
             <th className="w-50">
               <Carousel className="p-5 text-center">
-                {images.map((item, i) => (
+                {images?.map((item, i) => (
                   <Carousel.Item className="">
                     <img
                       crossOrigin="anonymous"
@@ -29,6 +30,9 @@ export const ProductInformation = () => {
                       src={
                         process.env.REACT_APP_IMAGE_SERVER_URL + item.substr(6)
                       }
+                      style={{
+                        minWidth: "100px",
+                      }}
                     />
                   </Carousel.Item>
                 ))}
@@ -36,11 +40,12 @@ export const ProductInformation = () => {
             </th>
             <th colSpan={2} className="d-inline-block">
               <h5>{selectedProduct.name}</h5> <br />
-              <p>
+              <h6 className="text-danger">
                 {selectedProduct.salesPrice > 0
                   ? `$${selectedProduct.salesPrice} from $${selectedProduct.price}`
                   : `$${selectedProduct.price}`}
-              </p>
+              </h6>
+              <h5>Description</h5>
               <p>{selectedProduct.description}</p>
             </th>
           </tr>
@@ -51,17 +56,19 @@ export const ProductInformation = () => {
               <i className="fa-solid fa-star"></i> {selectedProduct.ratings}
             </td>
             <td>
-              <Form.Control type="number" placeholder="Input Qty" />
-            </td>
-            <td className="">
-              <Button
-                onClick={handleOnClick}
-                style={{
-                  borderRadius: "10px",
-                }}
-              >
-                Add to Cart
-              </Button>
+              <Form className="d-flex justify-content-between">
+                <Form.Label>Enter Qty</Form.Label>
+                <Form.Control
+                  type="email"
+                  placeholder="Enter Qty"
+                  defaultValue={0}
+                  className="m-1"
+                />
+
+                <Button variant="primary" type="submit">
+                  Add To Cart
+                </Button>
+              </Form>
             </td>
           </tr>
         </tbody>

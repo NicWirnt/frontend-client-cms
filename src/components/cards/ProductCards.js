@@ -18,11 +18,12 @@ export const ProductCards = ({ products }) => {
     dispatch(setToCart(item));
   };
   return (
-    <Row xs={1} md={4} className="g-4 mt-4 mb-4">
+    <Row xs={1} md={2} lg={4} className="g-4 mt-4 mb-4">
       {products.map((item, idx) => (
         <Col>
           <Card>
             <Card.Img
+              style={{ width: "200px", height: "200px" }}
               crossOrigin="anonymous"
               variant="top"
               src={
@@ -32,19 +33,10 @@ export const ProductCards = ({ products }) => {
             />
             <Card.Body>
               <Card.Title>
-                <Link to={`/product/${item._id}`}>
-                  <Button
-                    variant="primary"
-                    onClick={() => handleOnProductDesc(item)}
-                  >
-                    {item.name}
-                  </Button>
-                </Link>
+                <Link to={`/product/${item._id}`}>{item.name}</Link>
               </Card.Title>
               <Card.Text>
-                {item.salesPrice > 0
-                  ? `On Sale for only $${item.salesPrice} from $${item.price}`
-                  : `$${item.price}`}{" "}
+                {item.salesPrice > 0 ? `$${item.salesPrice}` : `$${item.price}`}
                 <br />
                 <div>
                   <Button

@@ -6,3 +6,5 @@ export const fetchCatAction = () => async (dispatch) => {
 
   response.status === "success" && dispatch(setCategories(response.result));
 };
+
+export const fetchProductByCat = (_id) => async (dispatch) => {};
