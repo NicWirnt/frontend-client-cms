@@ -4,6 +4,7 @@ const initialState = {
   showToast: false,
   status: "",
   message: "",
+  showModal: false,
 };
 
 const systemSlice = createSlice({
@@ -18,6 +19,9 @@ const systemSlice = createSlice({
     },
     setMessage: (state, { payload }) => {
       state.message = payload;
+    },
+    setShowModal: (state) => {
+      state.showModal = !state.showModal;
     },
   },
 });

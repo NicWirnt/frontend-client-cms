@@ -3,9 +3,10 @@ import logo from "../../img/logo.png";
 import { NavBarComp } from "../navBar/NavBar";
 import { Button, Col, Container, Form, InputGroup, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
-  const { cart } = useSelector((state) => state.cart);
+  const { cartTotal } = useSelector((state) => state.cart);
 
   return (
     <div className="py-2 bg-light fs-5">
@@ -32,21 +33,23 @@ export const Header = () => {
             variant="outline-danger"
             className="rounded-circle"
           >
-            <i class="fas fa-shopping-cart"></i>
-            <div
-              className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
-              style={{
-                color: "white",
-                width: "1.5rem",
-                height: "1.5rem",
-                position: "absolute",
-                // bottom: 0,
-                // right: 0,
-                transform: "translate(50%, -25%)",
-              }}
-            >
-              {cart.length}
-            </div>
+            <Link to="/cart">
+              <i className="fas fa-shopping-cart"></i>
+              <div
+                className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
+                style={{
+                  color: "white",
+                  width: "1.5rem",
+                  height: "1.5rem",
+                  position: "absolute",
+                  // bottom: 0,
+                  // right: 0,
+                  transform: "translate(50%, -25%)",
+                }}
+              >
+                {cartTotal}
+              </div>
+            </Link>
           </Button>
         </Col>
       </Row>

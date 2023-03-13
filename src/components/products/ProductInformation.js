@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Carousel, Form, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { setToCart } from "../../pages/cart/CartSlice";
@@ -8,10 +8,21 @@ export const ProductInformation = () => {
   const { cart } = useSelector((state) => state.cart);
   const { images } = selectedProduct;
   const dispatch = useDispatch();
+  const [qty, setQty] = useState(0);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    dispatch(setToCart(selectedProduct));
+    if (qty > 1) {
+      for (let i = 0; i < qty; i++) {
+        dispatch(setToCart(selectedProduct));
+      }
+    } else dispatch(setToCart(selectedProduct));
+  };
+
+  const handleOnChange = (e) => {
+    const { value } = e.target;
+
+    setQty(value);
   };
 
   return (
@@ -56,13 +67,18 @@ export const ProductInformation = () => {
               <i className="fa-solid fa-star"></i> {selectedProduct.ratings}
             </td>
             <td>
-              <Form className="d-flex justify-content-between">
+              <Form
+                className="d-flex justify-content-between"
+                onSubmit={handleOnSubmit}
+              >
                 <Form.Label>Enter Qty</Form.Label>
                 <Form.Control
-                  type="email"
+                  name="qty"
+                  type="number"
                   placeholder="Enter Qty"
-                  defaultValue={0}
                   className="m-1"
+                  defaultValue={1}
+                  onChange={handleOnChange}
                 />
 
                 <Button variant="primary" type="submit">

@@ -67,3 +67,11 @@ export const getSingleProduct = async (_id) => {
     url,
   });
 };
+
+export const getProductByCat = async (_id) => {
+  const url = categoriesEP + "/" + _id;
+  return apiProcessor({
+    method: "get",
+    url,
+  });
+};

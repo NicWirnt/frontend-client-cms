@@ -19,7 +19,7 @@ export const NavBarComp = () => {
 
   const parentCat = categories.filter((item, i) => !item.parentCatId);
   const childrenCat = categories.filter((item, i) => item.parentCatId);
-  console.log(categories);
+
   return (
     <Navbar
       collapseOnSelect
