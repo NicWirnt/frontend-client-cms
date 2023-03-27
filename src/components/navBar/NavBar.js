@@ -57,7 +57,9 @@ export const NavBarComp = () => {
                 {parentCat.map((item, i) => (
                   <>
                     <NavDropdown.Item>
-                      <Link to={`/category/${item._id}`}>{item.catName}</Link>
+                      <Link className="" to={`/category/${item._id}`}>
+                        {item.catName}
+                      </Link>
                       {childrenCat.map((cat, index) => (
                         <>
                           {cat.parentCatId === item._id && (

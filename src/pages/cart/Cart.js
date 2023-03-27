@@ -6,6 +6,11 @@ import { ImangeSlider } from "../../components/imageSlider/ImangeSlider";
 import { ImageMagnifier } from "../../components/imgMagnifier/ImageMagnifier";
 import { DefaultLayout } from "../layout/DefaultLayout";
 import "./cart.css";
+import {
+  MagnifierContainer,
+  MagnifierPreview,
+  MagnifierZoom,
+} from "react-image-magnifiers";
 
 export const Cart = () => {
   const { cart, cartTotal } = useSelector((state) => state.cart);

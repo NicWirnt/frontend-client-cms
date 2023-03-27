@@ -4,6 +4,7 @@ const rootUrlApi = "http://localhost:5000/api/v1";
 const categoriesEP = rootUrlApi + "/categories";
 const userEP = rootUrlApi + "/user";
 const productsEP = rootUrlApi + "/products";
+const stripeEP = rootUrlApi + "/create-payment-intent";
 
 const apiProcessor = async ({ method, url, dataObj }) => {
   try {
@@ -72,6 +73,14 @@ export const getProductByCat = async (_id) => {
   const url = categoriesEP + "/" + _id;
   return apiProcessor({
     method: "get",
+    url,
+  });
+};
+
+export const getPaymentIntent = async (item) => {
+  const url = stripeEP;
+  return apiProcessor({
+    method: "post",
     url,
   });
 };
