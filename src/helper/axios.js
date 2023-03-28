@@ -84,3 +84,13 @@ export const getPaymentIntent = async (item) => {
     url,
   });
 };
+
+//verify user email
+export const postEmailVerificaiton = async (dataObj) => {
+  const url = userEP + "/email-verification";
+  return apiProcessor({
+    method: "post",
+    url,
+    dataObj,
+  });
+};

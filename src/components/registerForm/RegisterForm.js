@@ -2,27 +2,51 @@ import React, { useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { passCheck } from "../../helper/passwordChecker";
 import { registerUserAction } from "../../pages/register/RegisterAction";
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
   const [form, setForm] = useState({});
   const [error, setError] = useState(false);
+  const [messsage, setMessage] = useState("");
+  const [disableButton, setDisableButton] = useState(true);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
+    setMessage("");
+    !disableButton && setDisableButton(true);
 
     setForm({
       ...form,
       [name]: value,
     });
+
+    if (name === "confirmPassword") {
+      const { password } = form;
+      password.length < 6 &&
+        setMessage("Password must be at least 6 characters");
+      !/[a-z]/.test(password) && setMessage("Password must contain lowercase");
+      !/[A-Z]/.test(password) && setMessage("Password must contain uppercase");
+      !/[0-9]/.test(password) && setMessage("Password must contain number");
+      !form.password && setMessage("Password must be provided");
+    }
   };
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
 
     if (form.password !== form.confirmPassword) {
-      return setError(true);
+      setError(true);
+      setMessage("Password doesn't match, please check your password");
+      return;
+    }
+    if (!passCheck(form.password)) {
+      setError(true);
+      setMessage(
+        "Password must include each one of lowercase, uppercase, number, and symbol"
+      );
+      return;
     }
     setError(false);
 
@@ -108,13 +132,16 @@ export const RegisterForm = () => {
             required
           />
         </Form.Group>
+        <Alert variant="info" show={true}>
+          {messsage}
+        </Alert>
         <div className="text-end mb-3">
           Already an existing customer?
           <br />
           <Link to="/login">Click here to login</Link>
         </div>
         <div className="d-flex justify-content-between">
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" disabled={disableButton}>
             Register
           </Button>
           <Button varian="danger" type="reset">
@@ -122,9 +149,6 @@ export const RegisterForm = () => {
           </Button>
         </div>
       </Form>
-      <Alert variant="info" show={error}>
-        Password doesn't match! Please check your password
-      </Alert>
     </div>
   );
 };

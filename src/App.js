@@ -11,6 +11,7 @@ import { Category } from "./pages/categories/Category";
 import { ProductByCat } from "./pages/products/ProductByCat";
 import { Cart } from "./pages/cart/Cart";
 import { Checkout } from "./pages/checkout/Checkout";
+import { EmailVerification } from "./pages/emailVeirfiy/EmailVerification";
 const App = () => {
   return (
     <div className="">
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/category/:_id" element={<ProductByCat />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/user/verify-email" element={<EmailVerification />} />
           <Route path="*" element={<h1>404 page not found</h1>}></Route>
         </Routes>
       </BrowserRouter>

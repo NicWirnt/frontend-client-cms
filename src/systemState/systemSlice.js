@@ -5,6 +5,7 @@ const initialState = {
   status: "",
   message: "",
   showModal: false,
+  isLoading: false,
 };
 
 const systemSlice = createSlice({
@@ -23,11 +24,14 @@ const systemSlice = createSlice({
     setShowModal: (state) => {
       state.showModal = !state.showModal;
     },
+    setIsLoading: (state) => {
+      state.isLoading = !state.isLoading;
+    },
   },
 });
 
 const { reducer, actions } = systemSlice;
 
-export const { setToast, setStatus, setMessage } = actions;
+export const { setToast, setStatus, setMessage, setIsLoading } = actions;
 
 export default reducer;

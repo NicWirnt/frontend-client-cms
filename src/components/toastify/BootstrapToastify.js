@@ -17,7 +17,7 @@ const BootstrapToastify = () => {
 
   return (
     <Row
-      className="position-absolute"
+      className="position-fixed"
       style={{
         right: 0,
       }}

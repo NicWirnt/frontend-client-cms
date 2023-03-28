@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, Dropdown, Form, InputGroup } from "react-bootstrap";
+import { Button, Col, Dropdown, Form, InputGroup } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -7,6 +7,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchCatAction } from "../../pages/categories/categoryAction";
+import "./navBar.css";
 
 export const NavBarComp = () => {
   const dispatch = useDispatch();
@@ -33,11 +34,27 @@ export const NavBarComp = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto ">
-            <Nav.Link className="text-black">
-              <Link to="/">Home Page</Link>
+            <Nav.Link className="">
+              <Link
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                }}
+                to="/"
+              >
+                Home Page
+              </Link>
             </Nav.Link>
-            <Nav.Link className="text-black">
-              <Link to="/products">Products</Link>
+            <Nav.Link className="">
+              <Link
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                }}
+                to="/products"
+              >
+                Products
+              </Link>
             </Nav.Link>
             <NavDropdown
               title="Categories"
@@ -56,14 +73,14 @@ export const NavBarComp = () => {
               >
                 {parentCat.map((item, i) => (
                   <>
-                    <NavDropdown.Item>
+                    <NavDropdown.Item className="no-hover">
                       <Link className="" to={`/category/${item._id}`}>
                         {item.catName}
                       </Link>
                       {childrenCat.map((cat, index) => (
                         <>
                           {cat.parentCatId === item._id && (
-                            <NavDropdown.Item>
+                            <NavDropdown.Item className="no-hover">
                               <Link
                                 to={`/category/${cat._id}`}
                                 style={{
@@ -83,20 +100,14 @@ export const NavBarComp = () => {
               </div>
             </NavDropdown>
           </Nav>
-          <Nav>
-            <Nav.Link>
-              <Link to="/login" className="text-black">
-                Login
-              </Link>
-            </Nav.Link>
-          </Nav>
-          <Nav>
-            <Nav.Link>
-              <Link to="/register" className="text-black">
-                Register
-              </Link>
-            </Nav.Link>
-          </Nav>
+          <Col xs={5} className="m-2 sm-6">
+            <InputGroup className="">
+              <Form.Control placeholder="Search Item" />
+              <Button variant="primary" id="button-addon2">
+                Search
+              </Button>
+            </InputGroup>
+          </Col>
         </Navbar.Collapse>
       </Container>
       <br />
