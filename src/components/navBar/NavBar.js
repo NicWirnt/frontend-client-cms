@@ -17,7 +17,8 @@ export const NavBarComp = () => {
   }, []);
 
   const { categories } = useSelector((state) => state.categories);
-
+  const { user } = useSelector((state) => state.user);
+  const { cartTotal } = useSelector((state) => state.cart);
   const parentCat = categories.filter((item, i) => !item.parentCatId);
   const childrenCat = categories.filter((item, i) => item.parentCatId);
 
@@ -100,15 +101,62 @@ export const NavBarComp = () => {
               </div>
             </NavDropdown>
           </Nav>
-          <Col xs={5} className="m-2 sm-6">
-            <InputGroup className="">
-              <Form.Control placeholder="Search Item" />
-              <Button variant="primary" id="button-addon2">
-                Search
-              </Button>
-            </InputGroup>
-          </Col>
         </Navbar.Collapse>
+        <Col xs={5} className="m-2 px-3 sm-6">
+          <InputGroup className="">
+            <Form.Control placeholder="Search Item" />
+            <Button variant="primary" id="button-addon2">
+              Search
+            </Button>
+          </InputGroup>
+        </Col>
+        <Col className="d-flex justify-content-end m-2">
+          {user ? (
+            <div className="m-2">
+              <i className="fa-solid fa-user "></i>
+            </div>
+          ) : (
+            <div className="d-flex justify-content-end">
+              <Nav className="mr-2 px-3">
+                <Nav.Link>
+                  <Link to="/login" className="text-black ">
+                    Login
+                  </Link>
+                </Nav.Link>
+              </Nav>
+              <Nav>
+                <Nav.Link>
+                  <Link to="/register" className="text-black">
+                    Register
+                  </Link>
+                </Nav.Link>
+              </Nav>
+            </div>
+          )}
+        </Col>
+        <Link to="/cart">
+          <Button
+            style={{ width: "3rem", height: "3rem" }}
+            variant="outline-danger"
+            className="rounded-circle"
+          >
+            <i className="fas fa-shopping-cart"></i>
+            <div
+              className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
+              style={{
+                color: "white",
+                width: "1.5rem",
+                height: "1.5rem",
+                position: "absolute",
+                // bottom: 0,
+                // right: 0,
+                transform: "translate(50%, -25%)",
+              }}
+            >
+              {cartTotal}
+            </div>
+          </Button>
+        </Link>
       </Container>
       <br />
     </Navbar>

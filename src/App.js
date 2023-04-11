@@ -12,9 +12,17 @@ import { ProductByCat } from "./pages/products/ProductByCat";
 import { Cart } from "./pages/cart/Cart";
 import { Checkout } from "./pages/checkout/Checkout";
 import { EmailVerification } from "./pages/emailVeirfiy/EmailVerification";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const App = () => {
   return (
-    <div className="">
+    <div
+      className=""
+      style={{
+        backgroundColor: "#f8f5fc",
+      }}
+    >
+      <ToastContainer />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Homepage />} />

@@ -1,16 +1,22 @@
 import { getUser } from "../../helper/axios";
-import { setMessage, setStatus, setToast } from "../../systemState/systemSlice";
+import { setIsLoading } from "../../systemState/systemSlice";
 import { setUser } from "../register/SignInUpSlice";
+import { toast } from "react-toastify";
 
 const fetchUserAction = (_id) => async (dispatch) => {};
 
 export const loginUserAction = (user) => async (dispatch) => {
-  const response = await getUser(user);
+  dispatch(setIsLoading());
+  const response = getUser(user);
 
-  console.log(response);
+  toast.promise(response, {
+    pending: "Please Wait",
+  });
 
-  response.status === "success" && dispatch(setUser(response.user));
-  dispatch(setStatus(response.status));
-  dispatch(setMessage(response.message));
-  dispatch(setToast());
+  const data = await response;
+
+  toast[data.status](data.message);
+  data.status === "success" && dispatch(setUser(data.user));
+
+  dispatch(setIsLoading());
 };

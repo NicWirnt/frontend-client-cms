@@ -1,20 +1,26 @@
 import React, { useRef, useState } from "react";
 import { useEffect } from "react";
-import { Alert, Button, Form } from "react-bootstrap";
+import { Alert, Button, Form, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { loginUserAction } from "../../pages/login/LoginAction";
-import { setToast } from "../../systemState/systemSlice";
+import { setMessage, setStatus, setToast } from "../../systemState/systemSlice";
 
 export const LoginForm = () => {
   const dispatch = useDispatch();
   const [form, setForm] = useState({});
   const { user } = useSelector((state) => state.user);
+  const { isLoading } = useSelector((state) => state.systemSlice);
 
   const nav = useNavigate();
+  const location = useLocation();
+
+  const origin =
+    (location.state && location.state.from && location.state.from.pathname) ||
+    "/";
 
   useEffect(() => {
-    user._id && nav("/") && dispatch(setToast(false));
+    user?._id && nav(origin);
   }, [user]);
 
   const handleOnChange = (e) => {
@@ -29,7 +35,11 @@ export const LoginForm = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     if (!form.email || !form.password) {
+      dispatch(setToast());
+      dispatch(setMessage("Both email and password must be filled!!"));
+      dispatch(setStatus());
       Alert("Please insert email and password");
+      return;
     }
 
     dispatch(loginUserAction(form));
@@ -76,7 +86,11 @@ export const LoginForm = () => {
         </Form.Group>
 
         <Button variant="primary" type="submit">
-          Login
+          {isLoading ? (
+            <Spinner variant="info" animation="border" size="lg"></Spinner>
+          ) : (
+            "Login"
+          )}
         </Button>
         <div className="text-end">
           <Link className="" to="/register">

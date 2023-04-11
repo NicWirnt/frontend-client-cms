@@ -10,10 +10,11 @@ export const RegisterForm = () => {
   const [form, setForm] = useState({});
   const [error, setError] = useState(false);
   const [messsage, setMessage] = useState("");
-  const [disableButton, setDisableButton] = useState(true);
+  const [disableButton, setDisableButton] = useState(false);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
+    setError(false);
     setMessage("");
     !disableButton && setDisableButton(true);
 
@@ -30,6 +31,7 @@ export const RegisterForm = () => {
       !/[A-Z]/.test(password) && setMessage("Password must contain uppercase");
       !/[0-9]/.test(password) && setMessage("Password must contain number");
       !form.password && setMessage("Password must be provided");
+      return;
     }
   };
 
@@ -41,18 +43,16 @@ export const RegisterForm = () => {
       setMessage("Password doesn't match, please check your password");
       return;
     }
-    if (!passCheck(form.password)) {
-      setError(true);
-      setMessage(
-        "Password must include each one of lowercase, uppercase, number, and symbol"
-      );
-      return;
-    }
+
     setError(false);
 
     const { confirmPassword, ...rest } = form;
 
     dispatch(registerUserAction(rest));
+  };
+
+  const toDisableButton = () => {
+    !error && setDisableButton(false);
   };
 
   return (
@@ -115,6 +115,7 @@ export const RegisterForm = () => {
         <Form.Group className="mb-3" controlId="formBasicPassword1">
           <Form.Label>Password</Form.Label>
           <Form.Control
+            autoComplete=""
             type="password"
             placeholder="Password"
             name="password"
@@ -125,16 +126,21 @@ export const RegisterForm = () => {
         <Form.Group className="mb-3" controlId="formBasicPassword2">
           <Form.Label>Confirm Password</Form.Label>
           <Form.Control
+            autoComplete=""
             type="password"
             placeholder="Confirm Password"
             name="confirmPassword"
             onChange={handleOnChange}
+            onBlur={toDisableButton}
             required
           />
         </Form.Group>
-        <Alert variant="info" show={true}>
-          {messsage}
-        </Alert>
+        <div className="text-danger fw-bold mb-2 bg-secondary rounded p-2">
+          {messsage
+            ? messsage
+            : "Please make sure your password contain each of lowercase, uppurcase and number"}
+        </div>
+
         <div className="text-end mb-3">
           Already an existing customer?
           <br />
