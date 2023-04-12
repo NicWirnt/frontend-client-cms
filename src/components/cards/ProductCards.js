@@ -21,7 +21,13 @@ export const ProductCards = ({ products }) => {
     <Row xs={1} md={2} lg={4} className="g-4 mt-4 mb-4">
       {products.map((item, idx) => (
         <Col>
-          <Card>
+          <Card
+            style={{
+              background: "#f8f5fc",
+              textAlign: "center",
+              alignItems: "center",
+            }}
+          >
             <Card.Img
               style={{ width: "200px", height: "200px" }}
               crossOrigin="anonymous"

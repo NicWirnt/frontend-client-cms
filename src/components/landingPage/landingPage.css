@@ -4,3 +4,18 @@
 .btn-shop {
   background-color: rgba(250, 229, 236, 255);
 }
+
+@media (max-width: 767px) {
+  .d-flex {
+    flex-direction: column;
+  }
+  .col1 {
+    min-width: 40vh;
+  }
+}
+
+@media (max-width: 992px) {
+  .img01 {
+    max-width: 70%;
+  }
+}

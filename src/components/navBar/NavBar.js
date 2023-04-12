@@ -111,22 +111,25 @@ export const NavBarComp = () => {
           </InputGroup>
         </Col>
         <Col className="d-flex justify-content-end m-2">
-          {user ? (
+          {user?.length ? (
             <div className="m-2">
               <i className="fa-solid fa-user "></i>
             </div>
           ) : (
-            <div className="d-flex justify-content-end">
+            <div className="d-flex justify-content-end ">
               <Nav className="mr-2 px-3">
                 <Nav.Link>
-                  <Link to="/login" className="text-black ">
+                  <Link to="/login" className="text-black text-decoration-none">
                     Login
                   </Link>
                 </Nav.Link>
               </Nav>
               <Nav>
                 <Nav.Link>
-                  <Link to="/register" className="text-black">
+                  <Link
+                    to="/register"
+                    className="text-black text-decoration-none"
+                  >
                     Register
                   </Link>
                 </Nav.Link>

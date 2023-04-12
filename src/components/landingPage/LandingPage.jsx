@@ -33,7 +33,7 @@ const LandingPage = () => {
             Joy For Your Kids
           </h5>
         </div>
-        <div className="" style={{ color: "#34aadc" }}>
+        <div className="col1" style={{ color: "#34aadc" }}>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
             quisquam, labore corporis odit exercitationem sapiente eaque! Odit
@@ -50,7 +50,7 @@ const LandingPage = () => {
         </div>
       </div>
       <div
-        className=""
+        className="img01"
         style={{
           backgroundColor: "#f8f5fc",
         }}

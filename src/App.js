@@ -14,6 +14,7 @@ import { Checkout } from "./pages/checkout/Checkout";
 import { EmailVerification } from "./pages/emailVeirfiy/EmailVerification";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Payment from "./pages/checkout/Payment";
 const App = () => {
   return (
     <div
@@ -34,6 +35,8 @@ const App = () => {
           <Route path="/category/:_id" element={<ProductByCat />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/checkout/payment" element={<Payment />} />
+
           <Route path="/user/verify-email" element={<EmailVerification />} />
           <Route path="*" element={<h1>404 page not found</h1>}></Route>
         </Routes>

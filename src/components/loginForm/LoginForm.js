@@ -20,7 +20,7 @@ export const LoginForm = () => {
     "/";
 
   useEffect(() => {
-    user?._id && nav(origin);
+    user._id && nav(origin);
   }, [user]);
 
   const handleOnChange = (e) => {

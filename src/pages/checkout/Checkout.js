@@ -16,9 +16,6 @@ export const Checkout = () => {
         <Col>
           <AddressForm />
         </Col>
-        <Col md={6}>
-          <StripeForm />
-        </Col>
       </Row>
     </DefaultLayout>
   );

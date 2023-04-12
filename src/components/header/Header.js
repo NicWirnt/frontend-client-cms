@@ -18,10 +18,11 @@ export const Header = () => {
       style={{ backgroundColor: "rgba(250,229,236,255)" }}
     >
       <Row>
-        <Col className="m-2">
+        <Col className="px-5 ">
           MY TOYS{/* LOGO IMAGE */}
           {/* <img src={logo} style={{ width: "5rem", height: "5rem" }} /> */}
         </Col>
+
         <NavBarComp />
       </Row>
     </div>
