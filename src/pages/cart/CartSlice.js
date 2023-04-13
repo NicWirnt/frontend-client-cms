@@ -19,11 +19,17 @@ const cartSlice = createSlice({
         state.cartTotal += 1;
       }
     },
+    decreaseFromCart: (state, { payload }) => {
+      const existingItem = state.cart.find((item) => item._id === payload._id);
+      existingItem = -1;
+      state.cartTotal = -1;
+    },
+    removeFromCart: (state, { payload }) => {},
   },
 });
 
 const { actions, reducer } = cartSlice;
 
-export const { setToCart } = actions;
+export const { setToCart, decreaseFromCart, removeFromCart } = actions;
 
 export default reducer;

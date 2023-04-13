@@ -1,17 +1,25 @@
 import React from "react";
 import { Button, Card, CardGroup, Col, Row } from "react-bootstrap";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { setToCart } from "../../pages/cart/CartSlice";
+import { decreaseFromCart, setToCart } from "../../pages/cart/CartSlice";
 import { setSelectedProduct } from "../../pages/products/ProductSlice";
 
 export const ProductCards = ({ products }) => {
   const dispatch = useDispatch();
 
-  const displayRow = Math.ceil(products.length / 4);
+  const { cart } = useSelector((state) => state.cart);
+
+  const itemExistInCart = products.filter((item) =>
+    cart.some((cartItem) => cartItem._id === item._id)
+  );
 
   const handleOnProductDesc = (product) => {
     dispatch(setSelectedProduct(product));
+  };
+
+  const handleOnReduce = (item) => {
+    dispatch(decreaseFromCart(item));
   };
 
   const handleOnClick = (item) => {
@@ -44,14 +52,32 @@ export const ProductCards = ({ products }) => {
               <Card.Text>
                 {item.salesPrice > 0 ? `$${item.salesPrice}` : `$${item.price}`}
                 <br />
-                <div>
-                  <Button
-                    className=""
-                    variant="outline-primary"
-                    onClick={() => handleOnClick(item)}
-                  >
-                    Add to cart
-                  </Button>
+                <div className="d-flex flex-row justify-items-center align-items-center">
+                  {item._id.includes(cart[idx]?._id) ? (
+                    <div className="w-100 ">
+                      <button
+                        onClick={() => handleOnClick(item)}
+                        className="mx-3 rounded "
+                      >
+                        +
+                      </button>
+                      <b>{cart[idx].cartQty}</b>
+                      <button
+                        className="mx-3 rounded"
+                        onClick={() => handleOnReduce(item)}
+                      >
+                        -
+                      </button>
+                    </div>
+                  ) : (
+                    <Button
+                      className="w-100"
+                      onClick={() => handleOnClick(item)}
+                      variant="outline-primary"
+                    >
+                      "Add To Cart"
+                    </Button>
+                  )}
                 </div>
               </Card.Text>
             </Card.Body>

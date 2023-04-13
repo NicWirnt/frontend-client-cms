@@ -17,7 +17,7 @@ export const ProductByCat = () => {
   const { selectedCategory } = useSelector((state) => state.categories);
   return (
     <DefaultLayout>
-      {products?.length < 1 ? (
+      {/* {products?.length < 1 ? (
         <h3 className="text-center mt-5">No products found in this category</h3>
       ) : (
         <h3
@@ -28,7 +28,7 @@ export const ProductByCat = () => {
         >
           Products By Category {selectedCategory}
         </h3>
-      )}
+      )} */}
       <ProductCards products={products} />
     </DefaultLayout>
   );
