@@ -3,7 +3,7 @@ import "bootswatch/dist/cerulean/bootstrap.min.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Homepage } from "./pages/homepage/Homepage";
 import { Login } from "./pages/login/Login";
-import "./app.css";
+// import "./app.css";
 import { Register } from "./pages/register/Register";
 import { Products } from "./pages/products/Products";
 import { ProductLanding } from "./pages/products/ProductLanding";
@@ -21,6 +21,7 @@ const App = () => {
       className=""
       style={{
         backgroundColor: "#f8f5fc",
+        minHeight: "80vh",
       }}
     >
       <ToastContainer />
