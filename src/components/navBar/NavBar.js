@@ -28,27 +28,27 @@ export const NavBarComp = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto ">
-            <Nav.Link className="">
-              <Link
+            <Nav.Link className="" to="/">
+              {/* <Link
                 style={{
                   textDecoration: "none",
                   color: "black",
                 }}
                 to="/"
-              >
-                Home Page
-              </Link>
+              > */}
+              Home Page
+              {/* </Link> */}
             </Nav.Link>
-            <Nav.Link className="">
-              <Link
+            <Nav.Link className="" href="/products">
+              {/* <Link
                 style={{
                   textDecoration: "none",
                   color: "black",
                 }}
                 to="/products"
-              >
-                Products
-              </Link>
+              > */}
+              Products
+              {/* </Link> */}
             </Nav.Link>
             <NavDropdown
               title="Categories"
@@ -65,29 +65,31 @@ export const NavBarComp = () => {
                 }}
               >
                 {parentCat.map((item, i) => (
-                  <NavDropdown.Item className="no-hover" key={item._id}>
-                    <Link key={i} to={`/category/${item._id}`}>
-                      {item.catName}
-                    </Link>
+                  <>
+                    <NavDropdown.Item className="no-hover" key={item._id}>
+                      <div key={i} to={`/category/${item._id}`}>
+                        {item.catName}
+                      </div>
+                    </NavDropdown.Item>
                     {childrenCat.map((cat, index) => (
                       <div key={index}>
                         {cat.parentCatId === item._id && (
-                          <NavDropdown.Item className="no-hover" key={index}>
-                            <Link
-                              key={index}
-                              to={`/category/${cat._id}`}
-                              style={{
-                                textDecoration: "none",
-                              }}
-                            >
-                              {cat.catName}
-                            </Link>
-                          </NavDropdown.Item>
+                          // <NavDropdown.Item className="no-hover" key={index}>
+                          <Link
+                            key={index}
+                            to={`/category/${cat._id}`}
+                            style={{
+                              textDecoration: "none",
+                            }}
+                          >
+                            {cat.catName}
+                          </Link>
+                          // </NavDropdown.Item>
                         )}
                       </div>
                     ))}
                     <Dropdown.Divider />
-                  </NavDropdown.Item>
+                  </>
                 ))}
               </div>
             </NavDropdown>
@@ -109,21 +111,10 @@ export const NavBarComp = () => {
           ) : (
             <div className="d-flex justify-content-end ">
               <Nav className="mr-2 px-3">
-                <Nav.Link>
-                  <Link to="/login" className="text-black text-decoration-none">
-                    Login
-                  </Link>
-                </Nav.Link>
+                <Nav.Link href="/login">Login</Nav.Link>
               </Nav>
               <Nav>
-                <Nav.Link>
-                  <Link
-                    to="/register"
-                    className="text-black text-decoration-none"
-                  >
-                    Register
-                  </Link>
-                </Nav.Link>
+                <Nav.Link href="/register">Register</Nav.Link>
               </Nav>
             </div>
           )}
