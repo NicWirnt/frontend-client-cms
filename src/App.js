@@ -15,7 +15,6 @@ import { EmailVerification } from "./pages/emailVeirfiy/EmailVerification";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Payment from "./pages/checkout/Payment";
-import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 const App = () => {
   return (
     <div

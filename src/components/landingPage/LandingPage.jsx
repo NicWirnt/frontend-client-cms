@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+
 import hero from "./hero3.jpg";
 import "./landingPage.css";
 import { Link } from "react-router-dom";

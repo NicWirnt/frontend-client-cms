@@ -11,25 +11,27 @@ export const ProductByCat = () => {
 
   useEffect(() => {
     dispatch(fetchProdcutByCat(_id));
-  }, [_id]);
+  }, [_id, dispatch]);
 
   const { products } = useSelector((state) => state.products);
   const { selectedCategory } = useSelector((state) => state.categories);
   return (
     <DefaultLayout>
-      {/* {products?.length < 1 ? (
-        <h3 className="text-center mt-5">No products found in this category</h3>
+      {products?.length ? (
+        <>
+          <h3
+            style={{
+              textAlign: "center",
+              marginTop: "10px",
+            }}
+          >
+            Products By Category {selectedCategory}
+          </h3>
+          <ProductCards products={products} />
+        </>
       ) : (
-        <h3
-          style={{
-            textAlign: "center",
-            marginTop: "10px",
-          }}
-        >
-          Products By Category {selectedCategory}
-        </h3>
-      )} */}
-      <ProductCards products={products} />
+        <h3 className="text-center mt-5">No products found in this category</h3>
+      )}
     </DefaultLayout>
   );
 };

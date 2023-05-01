@@ -5,7 +5,7 @@ import { setToCart } from "../../pages/cart/CartSlice";
 
 export const ProductInformation = () => {
   const { selectedProduct } = useSelector((state) => state.products);
-  const { cart } = useSelector((state) => state.cart);
+
   const { images } = selectedProduct;
   const dispatch = useDispatch();
   const [qty, setQty] = useState(0);
@@ -34,8 +34,10 @@ export const ProductInformation = () => {
             <th className="w-50">
               <Carousel className="p-5 text-center">
                 {images?.map((item, i) => (
-                  <Carousel.Item className="">
+                  <Carousel.Item key={i}>
                     <img
+                      alt="Product"
+                      key={item._id}
                       crossOrigin="anonymous"
                       className="d-block w-100"
                       src={

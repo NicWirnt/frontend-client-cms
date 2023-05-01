@@ -14,7 +14,7 @@ export const NavBarComp = () => {
 
   useEffect(() => {
     dispatch(fetchCatAction());
-  }, []);
+  }, [dispatch]);
 
   const { categories } = useSelector((state) => state.categories);
   const { user } = useSelector((state) => state.user);
@@ -23,14 +23,7 @@ export const NavBarComp = () => {
   const childrenCat = categories.filter((item, i) => item.parentCatId);
 
   return (
-    <Navbar
-      collapseOnSelect
-      expand="md"
-      bg=""
-      variant=""
-      className="shadow-sm"
-      sticky="top"
-    >
+    <Navbar collapseOnSelect expand="md" className="shadow-sm" sticky="top">
       <Container>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -60,8 +53,7 @@ export const NavBarComp = () => {
             <NavDropdown
               title="Categories"
               id="collasible-nav-dropdown"
-              align={{ lg: "end" }}
-              style={{}}
+              align="end"
             >
               <div
                 style={{
@@ -73,30 +65,29 @@ export const NavBarComp = () => {
                 }}
               >
                 {parentCat.map((item, i) => (
-                  <>
-                    <NavDropdown.Item className="no-hover">
-                      <Link className="" to={`/category/${item._id}`}>
-                        {item.catName}
-                      </Link>
-                      {childrenCat.map((cat, index) => (
-                        <>
-                          {cat.parentCatId === item._id && (
-                            <NavDropdown.Item className="no-hover">
-                              <Link
-                                to={`/category/${cat._id}`}
-                                style={{
-                                  textDecoration: "none",
-                                }}
-                              >
-                                {cat.catName}
-                              </Link>
-                            </NavDropdown.Item>
-                          )}
-                        </>
-                      ))}
-                      <Dropdown.Divider />
-                    </NavDropdown.Item>
-                  </>
+                  <NavDropdown.Item className="no-hover" key={item._id}>
+                    <Link key={i} to={`/category/${item._id}`}>
+                      {item.catName}
+                    </Link>
+                    {childrenCat.map((cat, index) => (
+                      <div key={index}>
+                        {cat.parentCatId === item._id && (
+                          <NavDropdown.Item className="no-hover" key={index}>
+                            <Link
+                              key={index}
+                              to={`/category/${cat._id}`}
+                              style={{
+                                textDecoration: "none",
+                              }}
+                            >
+                              {cat.catName}
+                            </Link>
+                          </NavDropdown.Item>
+                        )}
+                      </div>
+                    ))}
+                    <Dropdown.Divider />
+                  </NavDropdown.Item>
                 ))}
               </div>
             </NavDropdown>

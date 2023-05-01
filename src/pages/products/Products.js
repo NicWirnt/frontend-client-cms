@@ -9,7 +9,7 @@ export const Products = () => {
 
   useEffect(() => {
     dispatch(fetchProductsAction());
-  }, []);
+  }, [dispatch]);
 
   const { products } = useSelector((state) => state.products);
 

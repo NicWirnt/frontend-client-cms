@@ -1,19 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button, Form, Table } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ImangeSlider } from "../../components/imageSlider/ImangeSlider";
-import { ImageMagnifier } from "../../components/imgMagnifier/ImageMagnifier";
+
 import { DefaultLayout } from "../layout/DefaultLayout";
 import "./cart.css";
-import {
-  MagnifierContainer,
-  MagnifierPreview,
-  MagnifierZoom,
-} from "react-image-magnifiers";
 
 export const Cart = () => {
-  const { cart, cartTotal } = useSelector((state) => state.cart);
+  const { cart } = useSelector((state) => state.cart);
 
   const ttl = cart.reduce(
     (total, item) => total + item.cartQty * item.price,
@@ -25,11 +20,7 @@ export const Cart = () => {
       <h1 className="mt-2">Cart</h1>
 
       {cart?.length === 0 ? (
-        <tr>
-          <td>
-            <h1>Your cart is empty</h1>
-          </td>
-        </tr>
+        <h1>Your cart is empty</h1>
       ) : (
         <div className="d-flex flex-container">
           <Table striped size="sm" className="mt-5 table1">
@@ -47,22 +38,20 @@ export const Cart = () => {
             </thead>
             <tbody>
               {cart.map((item, i) => (
-                <>
-                  <tr key={i}>
-                    <td>
-                      <ImangeSlider images={item.images} />
-                    </td>
-                    <td>
-                      <h5>{item.name} </h5>
-                      <hr />
-                      Qty :{item.cartQty}
-                    </td>
+                <tr key={i}>
+                  <td>
+                    <ImangeSlider images={item.images} />
+                  </td>
+                  <td>
+                    <h5>{item.name} </h5>
+                    <hr />
+                    Qty :{item.cartQty}
+                  </td>
 
-                    <td> ${item.price}</td>
+                  <td> ${item.price}</td>
 
-                    <td>${item.cartQty * item.price}</td>
-                  </tr>
-                </>
+                  <td>${item.cartQty * item.price}</td>
+                </tr>
               ))}
             </tbody>
           </Table>
