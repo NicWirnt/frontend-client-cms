@@ -39,7 +39,7 @@ export const NavBarComp = () => {
               Home Page
               {/* </Link> */}
             </Nav.Link>
-            <Nav.Link className="" href="/products">
+            <Nav.Link href="/products">
               {/* <Link
                 style={{
                   textDecoration: "none",
@@ -72,7 +72,7 @@ export const NavBarComp = () => {
                       </div>
                     </NavDropdown.Item>
                     {childrenCat.map((cat, index) => (
-                      <div key={index}>
+                      <div key={cat._id}>
                         {cat.parentCatId === item._id && (
                           // <NavDropdown.Item className="no-hover" key={index}>
                           <Link
