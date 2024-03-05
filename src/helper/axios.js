@@ -1,7 +1,7 @@
 import axios from "axios";
-
+const rootUrlApi = "http://localhost:5000/api/v1";
 // const rootUrlApi = "https://thawing-escarpment-39810.herokuapp.com//api/v1";
-const rootUrlApi = "https://thawing-escarpment-39810.herokuapp.com/api/v1";
+// const rootUrlApi = "https://thawing-escarpment-39810.herokuapp.com/api/v1";
 const categoriesEP = rootUrlApi + "/categories";
 const userEP = rootUrlApi + "/user";
 const productsEP = rootUrlApi + "/products";

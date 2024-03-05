@@ -24,6 +24,7 @@ export const ProductCards = ({ products }) => {
   const handleOnClick = (item) => {
     dispatch(setToCart(item));
   };
+  console.log(products);
   return (
     <Row xs={1} md={2} lg={4} className="g-4 mt-4 mb-4">
       {products.map((item, idx) => (
